@@ -118,7 +118,6 @@
       </div>
       <div class="sub">Test Infrastructure &amp; Developer Productivity &middot; India</div>
       <div class="group">
-      <div class="group">
         <div class="group-head">E2E Test Platform &amp; CI/CD</div>
         <ul>
           <li>Migrated the slow, flaky WebdriverIO suite to Playwright. WDIO had piled up wrappers and a CJS teleport framework that transpiled our ES specs, which made builds slow, and its reports needed a script just to attach logs and had no timeline view. Playwright brought native ES, much easier debugging, CDP execution (~2x faster than WDIO's ChromeDriver hops), and agent-scaffolded specs that 
@@ -126,12 +125,13 @@
          <li> 
           Designed the framework to be modular and scalable, keeping the core offerings (hydration, selective test execution, ticket creation, and performance checks) in a standalone automations package that any project can drop in through an agent.
          </li>
-          <li>Selectively running e2e tests on a PR is hard as e2e don't import src code directly. I implemented a coverage based solution for this. Every spec execution generates a coverage file that has the compiled js chunk names. Via each chunk I was able to get the source-maps files mapped to it and get the source code lines that were executed. I created a reverse mapping of source code files to specs and executed specs on the PR if these files were changed. This new logic helped us to catch ~90% of the leaked mainline bugs on the PR itself.</li>
-          <li>IP allowlist race condition in cloudflare api was causing flaky Windows E2E runs. I implemented an AWS Lambda and SQS pipeline that registers each runner's dynamic IP before its run and clears it afterward.</li>
+          <li>Built change-based selective execution so a PR runs only the specs that exercise its changed code. E2E specs don't import source directly, so the mapping is derived from coverage: each run's V8 coverage gives the compiled chunk names, which resolve through source-maps back to the executed source lines, producing a reverse source-to-spec map that selects specs when their files change. This <strong>catches ~90% of leaked mainline bugs on the PR itself</strong>.</li>
+          <li>Fixed flaky Windows E2E runs caused by a Cloudflare allowlist race condition: an AWS Lambda and SQS pipeline registers each runner's dynamic IP before its run and clears it afterward.</li>
         </ul>
       </div>
 
-      <div class="group-head">AI &amp; Agentic Test Tooling</div>
+      <div class="group">
+        <div class="group-head">AI &amp; Agentic Test Tooling</div>
         <ul>
           <li>Built an MCP server and daily LLM agents that tell real product bugs apart from flaky failures, auto-fix the test-side ones, and trace each failure back to the PR that caused it with a plain-English log summary. This took most of the manual triage that used to stall PRs and releases off the team's plate.</li>
           <li>Designed E2E Coverage Signals, a dashboard that maps where customers actually feel pain (from GitHub, customer escalations, incident.io, and Slack) against our E2E coverage and ranks the riskiest gaps with a transparent scoring formula. A daily AI agent feeds the deterministic Node pipeline behind it, shipped as a React/Vite app on GitHub Pages. It gave leadership their first clear read on which important areas are under-tested.</li>
@@ -141,8 +141,8 @@
       <div class="group">
         <div class="group-head">Coverage &amp; Quality Governance</div>
         <ul>
-          <li>Shipped incremental-code-coverage check across all the backend repos via a reusable gh-action that tell authors whether their actual change is tested.</li>
-          <li>Company wide coverage for unit & integration increased from 51% to 73% over 3 months</li>
+          <li>Shipped an incremental-coverage check across all backend repos as a reusable GitHub Action that tells authors whether their actual change is tested, not just where total coverage sits.</li>
+          <li>Lifted company-wide unit and integration coverage from <strong>51% to 73% in 3 months</strong>.</li>
         </ul>
       </div>
 
