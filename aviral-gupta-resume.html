@@ -48,7 +48,12 @@
   .dates { font-size: 9.6px; color: var(--muted); white-space: nowrap; font-weight: 600; }
   .sub { font-size: 9.9px; color: var(--muted); font-style: italic; margin: 1px 0 6px; }
 
+  .group { margin-top: 7px; break-inside: avoid; }
+  .group:first-of-type { margin-top: 4px; }
+  .group-head { font-size: 10.9px; font-weight: 800; color: #15181c; margin: 0; letter-spacing: 0.2px; }
+
   ul { margin: 5px 0 0; padding-left: 17px; }
+  .group ul { margin-top: 2px; }
   li { margin-bottom: 5.5px; break-inside: avoid; }
   li::marker { color: var(--accent); }
   strong { color: #15181c; font-weight: 700; }
@@ -91,7 +96,7 @@
 
   <section>
     <h2>Summary</h2>
-    <p>Software Engineer 2 on Postman's Test Infrastructure / Developer Productivity team with 3+ years building the platforms, CI/CD, and AI tooling that let hundreds of engineers ship a large Electron desktop application safely and fast. Owner of multiple engineering epics across E2E automation, performance guardrails, test-coverage governance, and AI-driven test triage. I turn slow, flaky, manual quality processes into deterministic, self-serve, metrics-driven systems.</p>
+    <p>Software Engineer 2 on Postman's Test Infrastructure and Developer Productivity team. Over the past 3+ years I've built the CI/CD, performance, and AI tooling that hundreds of engineers rely on to ship a large Electron desktop app quickly and safely. My work has spanned E2E automation, performance guardrails, coverage governance, and AI-assisted test triage. I like taking quality processes that are slow and manual and making them fast and self-serve.</p>
   </section>
 
   <section>
@@ -112,41 +117,62 @@
         <span class="dates">Jan 2023 &ndash; Present</span>
       </div>
       <div class="sub">Test Infrastructure &amp; Developer Productivity &middot; India</div>
-      <ul>
-        <li><strong>AI-driven test triage &amp; debugging bots.</strong> A developer-experience survey flagged flaky specs as the team's single biggest time-sink, and finding the culprit change meant slow manual New Relic queries. Built an MCP server and daily LLM agents that auto-classify product bugs vs flaky test failures, auto-fix test bugs, and pinpoint culprit PRs from frontend/backend changelogs with AI-generated log summaries &mdash; removing most of the manual triage that used to stall PRs and releases.</li>
-        <li><strong>E2E Coverage Signals (AI agent).</strong> There was no data-driven way to see which product areas hurt customers most while having the weakest E2E coverage. Designed and built a dashboard that overlays live customer-pain signals from four sources (GitHub, customer escalations, incident.io, Slack) on a curated feature-to-spec map and ranks the riskiest gaps via an auditable risk formula &mdash; a deterministic Node pipeline fed by a daily AI agent, shipped as a React/Vite app on GitHub Pages. Gave leadership the first data-driven view of high-risk, under-tested areas and helped reposition Test Infra from release blocker to enabler.</li>
-        <li><strong>AI-assisted test authoring &amp; Playwright CI platform.</strong> The legacy WebdriverIO suite was slow and flaky and a release bottleneck, with new tests taking days to write. Built the Playwright CI/test platform that powered the team's migration off WDIO &mdash; PR and hourly pipelines, flakiness gating, Allure/HTML reports with videos + HAR, automated ticket creation/closing &mdash; plus an AI codegen workflow and reusable page objects. <strong>Cut full-suite app CI 67% (60 &rarr; 20 min)</strong> and <strong>new-spec authoring ~98% (~3&ndash;4 days &rarr; ~30 min)</strong>.</li>
-        <li><strong>Selective (change-based) test execution.</strong> Every PR re-ran the entire suite, burning CI minutes on one-line changes. Built coverage-derived selection &mdash; an hourly job turns per-spec V8 coverage into a source-to-spec map (auto-refreshed, no hand-maintained list) so a PR runs only the specs that exercise its changed files, auto-scaling CI parallelism and falling back to the full suite only for &gt;100-file or major-dependency changes. Also <strong>cut unit-test pipeline cost ~30%</strong> with history-based retries and by dropping video/network capture for consistently-green specs.</li>
-        <li><strong>Test-coverage guardrails (patch coverage).</strong> Coverage was informational-only and net coverage moved too slowly to tell authors whether their change was tested &mdash; a growing risk as AI generated more code. Shipped incremental (patch) coverage as a blocking PR check for backend services and a postman-app branch-coverage comment scored against CODEOWNERS. <strong>Enforced coverage on new code across 37 teams</strong> (backend floors 70% critical / 50% non-critical) and onboarded IAM, Workspaces, Collections, PAN and Billing backend services to coverage tracking.</li>
-        <li><strong>App &amp; release performance guardrails.</strong> A slowing app risks UX and churn, and releases had no gate on per-flow wall-clock. Built app launch/relaunch performance measurement (Playwright &rarr; CircleCI &rarr; New Relic) and designed release-level P90/P95 guardrails for 5 core flows across Linux, macOS (Apple Silicon) and Windows (&ge;30 samples each) that <strong>fail a release on a &gt;15% / &gt;250&nbsp;ms regression</strong>, alongside the critical-path bundle-size budget (~30&nbsp;KB gzipped).</li>
-        <li><strong>Release confidence &amp; faster releases.</strong> Release signoff was manual and slow (<strong>~4&ndash;5 hrs per build</strong>). Built a release-confidence metric that <strong>blocks tier rollouts below 95% confidence</strong>, plus automated daily-release analysis and summaries that replaced most of the manual signoff &mdash; enabling Postman's move to <strong>daily / sub-60-minute releases</strong>.</li>
-        <li><strong>E2E reliability &amp; flakiness reduction.</strong> Flaky tests eroded trust and blocked merges. Cut flakiness with framework auto-waiting, service virtualization (record/replay) for Postman services, and more actionable Slack alerts and flakiness-trend dashboards.</li>
-        <li><strong>Windows CI IP-allowlisting pipeline.</strong> Windows CI runners come up on dynamic IPs, and a Cloudflare allowlist race condition was intermittently failing Windows E2E runs. Built an AWS Lambda + SQS pipeline that registers each runner's IP against the Cloudflare allowlist and flushes it afterwards &mdash; removing the race and stabilizing Windows runs.</li>
-        <li><strong>On-call, incident.io migration &amp; multi-OS / region scale.</strong> Migrated on-call alerting from Opsgenie to incident.io (schedules, routing, a reusable helper package) and authored the on-call runbooks; scaled the E2E platform across Windows/macOS/Linux + Apple Silicon and the EU region.</li>
-      </ul>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head">
-        <span class="role"><span class="org">AccioJob</span> &mdash; Data Structures &amp; Algorithms Mentor</span>
-        <span class="dates">Apr 2022 &ndash; Dec 2023</span>
+      <div class="group">
+      <div class="group">
+        <div class="group-head">E2E Test Platform &amp; CI/CD</div>
+        <ul>
+          <li>Migrated the slow, flaky WebdriverIO suite to Playwright. WDIO had piled up wrappers and a CJS teleport framework that transpiled our ES specs, which made builds slow, and its reports needed a script just to attach logs and had no timeline view. Playwright brought native ES, much easier debugging, CDP execution (~2x faster than WDIO's ChromeDriver hops), and agent-scaffolded specs that 
+         <strong>cut new-spec authoring ~80% (~1 story point &rarr; ~30&ndash;60 min)</strong>.</li>
+         <li> 
+          Designed the framework to be modular and scalable, keeping the core offerings (hydration, selective test execution, ticket creation, and performance checks) in a standalone automations package that any project can drop in through an agent.
+         </li>
+          <li>Selectively running e2e tests on a PR is hard as e2e don't import src code directly. I implemented a coverage based solution for this. Every spec execution generates a coverage file that has the compiled js chunk names. Via each chunk I was able to get the source-maps files mapped to it and get the source code lines that were executed. I created a reverse mapping of source code files to specs and executed specs on the PR if these files were changed. This new logic helped us to catch ~90% of the leaked mainline bugs on the PR itself.</li>
+          <li>IP allowlist race condition in cloudflare api was causing flaky Windows E2E runs. I implemented an AWS Lambda and SQS pipeline that registers each runner's dynamic IP before its run and clears it afterward.</li>
+        </ul>
       </div>
-      <ul>
-        <li>Mentored students through data-structures and algorithms problem-solving &mdash; debugging their approaches, explaining optimal solutions, and sharpening their problem-solving technique.</li>
-      </ul>
+
+      <div class="group-head">AI &amp; Agentic Test Tooling</div>
+        <ul>
+          <li>Built an MCP server and daily LLM agents that tell real product bugs apart from flaky failures, auto-fix the test-side ones, and trace each failure back to the PR that caused it with a plain-English log summary. This took most of the manual triage that used to stall PRs and releases off the team's plate.</li>
+          <li>Designed E2E Coverage Signals, a dashboard that maps where customers actually feel pain (from GitHub, customer escalations, incident.io, and Slack) against our E2E coverage and ranks the riskiest gaps with a transparent scoring formula. A daily AI agent feeds the deterministic Node pipeline behind it, shipped as a React/Vite app on GitHub Pages. It gave leadership their first clear read on which important areas are under-tested.</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-head">Coverage &amp; Quality Governance</div>
+        <ul>
+          <li>Shipped incremental-code-coverage check across all the backend repos via a reusable gh-action that tell authors whether their actual change is tested.</li>
+          <li>Company wide coverage for unit & integration increased from 51% to 73% over 3 months</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-head">Performance &amp; Release Guardrails</div>
+        <ul>
+          <li>Created a release-confidence score that <strong>holds back a tier rollout until it clears 95%</strong>. Automated daily-release analysis and summaries took over most of the <strong>~4&ndash;5 hr manual signoff</strong>, a big part of how Postman now ships <strong>daily, in under an hour</strong>.</li>
+          <li>Measured app warm-boot times through a Playwright &rarr; CircleCI &rarr; New Relic pipeline and turned them into release gates. Built the self-serve infra behind it so developers can trigger runs on demand across every OS, see how a change moves performance, and compare it against earlier builds.</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-head">Operations</div>
+        <ul>
+          <li>Moved on-call alerting from Opsgenie to incident.io, including schedules, routing, and a reusable helper package.</li>
+          <li>Built squad- and company-level dashboards tracking incident, bug, and CUE trends, feeding the State of Quality (Looker) dashboard that gives the org a running view of reliability.</li>
+          <li><strong>Cut E2E test setup time ~80% (~30s &rarr; ~6s)</strong> by reworking test hydration (per-spec data and user setup) with parallel user creation and async cleanup, removing barrel-file imports, and caching redundant network calls.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <section>
     <h2>Skills</h2>
-    <div class="skill"><span class="label">Test automation:</span> <span class="val">Playwright, WebdriverIO, Puppeteer, Allure, Jest, Vitest, React Testing Library, NYC/Istanbul, page-object design, service virtualization</span></div>
-    <div class="skill"><span class="label">CI/CD &amp; build:</span> <span class="val">CircleCI, GitHub Actions, Nx monorepo, Yarn v4, Docker, SWC, selective/affected test execution, Bash</span></div>
-    <div class="skill"><span class="label">AI &amp; agentic tooling:</span> <span class="val">MCP servers, LLM agents, RAG, Cursor Automation, Claude, AI-assisted test codegen</span></div>
+    <div class="skill"><span class="label">AI &amp; Agentic tooling:</span> <span class="val">MCP servers, LLM agents, Cursor/Claude Automations</span></div>
+    <div class="skill"><span class="label">Test automation:</span> <span class="val">Playwright, WebdriverIO, Puppeteer, Allure reporting, NYC/Istanbul, page-object design</span></div>
+    <div class="skill"><span class="label">CI/CD &amp; build:</span> <span class="val">CircleCI, GitHub Actions, Nx monorepo, Yarn v4, Selective Test Execution</span></div>
     <div class="skill"><span class="label">Observability &amp; data:</span> <span class="val">New Relic (NRQL), Looker, AWS (Lambda, SQS, Redshift, S3), SonarQube, incident.io, Opsgenie</span></div>
-    <div class="skill"><span class="label">Performance:</span> <span class="val">launch/relaunch benchmarking, Web Performance API, Lighthouse INP, critical-path bundle-size budgets, P90/P95 regression gating</span></div>
-    <div class="skill"><span class="label">Languages:</span> <span class="val">TypeScript, JavaScript, Node.js, Python, C++</span></div>
-    <div class="skill"><span class="label">Platforms:</span> <span class="val">Electron desktop + web, multi-OS (Windows / macOS / Linux, Apple Silicon), LaunchDarkly, Cloudflare, mitmproxy</span></div>
-    <div class="skill"><span class="label">Competitive programming:</span> <span class="val">LeetCode (max rating 2109), CodeChef (5-star, max rating 2015)</span></div>
+    <div class="skill"><span class="label">Performance:</span> <span class="val">App relaunch benchmarking + regression gating, critical-path bundle-size gates, Lighthouse Metrics (LCP, FID, CLS)</span></div>
+    <div class="skill"><span class="label">Languages:</span> <span class="val">JavaScript, C++</span></div>
   </section>
 
   <section>
