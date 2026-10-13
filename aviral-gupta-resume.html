@@ -133,7 +133,7 @@
       <div class="group">
         <div class="group-head">AI &amp; Agentic Test Tooling</div>
         <ul>
-          <li>Built an MCP server and daily LLM agents that tell real product bugs apart from flaky failures, auto-fix the test-side ones, and trace each failure back to the PR that caused it with a plain-English log summary. This took most of the manual triage that used to stall PRs and releases off the team's plate.</li>
+          <li>Built and deployed the test-infra-mcp-server, adding tools that let developers trigger E2E tests and check their squad&rsquo;s flaky specs, plus tools that let agents automatically triage consistent E2E failures. Roughly 63% of triage tickets were resolved without manual intervention.</li>
           <li>Designed E2E Coverage Signals, a dashboard that maps where customers actually feel pain (from GitHub, customer escalations, incident.io, and Slack) against our E2E coverage and ranks the riskiest gaps with a transparent scoring formula. A daily AI agent feeds the deterministic Node pipeline behind it, shipped as a React/Vite app on GitHub Pages. It gave leadership their first clear read on which important areas are under-tested.</li>
         </ul>
       </div>
@@ -141,7 +141,7 @@
       <div class="group">
         <div class="group-head">Coverage &amp; Quality Governance</div>
         <ul>
-          <li>Shipped an incremental-coverage check across all backend repos as a reusable GitHub Action that tells authors whether their actual change is tested, not just where total coverage sits. Lifted company-wide unit and integration coverage from <strong>51% to 73% in 3 months</strong>.</li>
+          <li>Shipped an incremental-coverage check as a reusable GitHub Action across every backend repo. Instead of reporting where total coverage sits, it tells the author whether the lines they just wrote are tested. Company-wide unit and integration coverage increased from <strong>42% to 73% in 3 months</strong>.</li>
         </ul>
       </div>
 
@@ -149,16 +149,16 @@
         <div class="group-head">Performance &amp; Release Guardrails</div>
         <ul>
           <li>Created a release-confidence score that <strong>holds back a tier rollout until it clears 95%</strong>. Automated daily-release analysis and summaries took over most of the <strong>~4&ndash;5 hr manual signoff</strong>, a big part of how Postman now ships <strong>daily, in under an hour</strong>.</li>
-          <li>Measured app warm-boot times through a Playwright &rarr; CircleCI &rarr; New Relic pipeline and turned them into release gates. Built the self-serve infra behind it so developers can trigger runs on demand across every OS, see how a change moves performance, and compare it against earlier builds.</li>
+          <li>Measured app warm-boot times through a Playwright &rarr; CircleCI &rarr; New Relic pipeline and turned them into release gates. Built the self-serve infra behind it so developers can trigger runs on demand across every OS, see how their PR affects performance, and compare it against earlier builds.</li>
         </ul>
       </div>
 
       <div class="group">
         <div class="group-head">Operations</div>
         <ul>
-          <li>Moved on-call alerting from Opsgenie to incident.io, including schedules, routing, and a reusable helper package.</li>
-          <li>Built squad- and company-level dashboards tracking incident, bug, and CUE trends, feeding the State of Quality (Looker) dashboard that gives the org a running view of reliability.</li>
-          <li><strong>Cut E2E test setup time ~80% (~30s &rarr; ~6s)</strong> by reworking test hydration (per-spec data and user setup) with parallel user creation and async cleanup, removing barrel-file imports, and caching redundant network calls.</li>
+          <li>Moved on-call alerting from Opsgenie to incident.io &mdash; schedules, routing, and a shared helper package.</li>
+          <li>Built squad and company dashboards for incident, bug, and CUE trends. They feed the State of Quality dashboard in Looker, which gives the org a running view of reliability.</li>
+          <li><strong>Cut E2E test setup time from ~30s to ~6s</strong> by creating users in parallel, moving user cleanup to async monitors, removing barrel-file imports, and caching repeated network calls.</li>
         </ul>
       </div>
     </div>
