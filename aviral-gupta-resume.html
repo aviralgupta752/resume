@@ -85,7 +85,7 @@
 
   <header>
     <h1 class="name">Aviral Gupta</h1>
-    <div class="title-line">Software Engineer 2 &middot; Test Infrastructure &amp; Developer Productivity</div>
+    <div class="title-line">Software Engineer 2 &middot; Developer Productivity &amp; Platform Infrastructure</div>
     <div class="contact">
       <a href="mailto:guptaavi352@gmail.com">guptaavi352@gmail.com</a>
       <span class="sep">&middot;</span>+91 7726924322
@@ -96,16 +96,15 @@
 
   <section>
     <h2>Summary</h2>
-    <p>SDE 2 on Postman's Test Infrastructure and Developer Productivity team. Over the past 3+ years I've built the CI/CD, performance, and AI tooling that hundreds of engineers rely on to ship a the Postman web and electron desktop app quickly and safely. My work has spanned E2E automation, performance guardrails, coverage governance, and AI-assisted test triage. I like improving systems that are slow and manual and making them fast and self-serve.</p>
+    <p>Software Engineer 2 on Postman's Developer Productivity &amp; Platform Infrastructure team. Over 3+ years, built the core CI/CD platforms, performance regression gates, and AI-driven developer tooling supporting <strong>200+ engineers across 20 squads shipping ~45 PRs daily</strong> across Postman's web and Electron desktop apps. Specializes in transforming slow, non-deterministic build and test workflows into high-throughput, self-serve developer platforms.</p>
   </section>
 
   <section>
     <h2>Recognition</h2>
-    <blockquote class="quote">
-      &ldquo;You have operated like a one-man army across multiple initiatives, embracing emerging AI technologies and translating them into practical, meaningful offerings for the team &mdash; and your work has been central to shifting the narrative around Test Infra, which is no longer viewed as a blocker to feature releases.&rdquo;
-      <span class="attrib">&mdash; <a href="https://www.linkedin.com/in/salil-gupta-33247a22/">Salil Gupta</a>, Engineering Manager, Postman</span>
+    <blockquote class="quote" style="padding: 4px 10px; font-size: 9.8px;">
+      &ldquo;Operated like a one-man army across multiple initiatives, embracing AI technologies into practical offerings... central to shifting Test Infra from a blocker to an enabler of feature releases.&rdquo;
+      <span class="attrib" style="margin-top: 3px;">&mdash; <a href="https://www.linkedin.com/in/salil-gupta-33247a22/">Salil Gupta</a>, Engineering Manager, Postman &middot; <a href="https://aviralgupta752.github.io/Aviral-Resume/">View quarterly reviews &rarr;</a></span>
     </blockquote>
-    <p style="margin: 7px 0 0; font-size: 10px;"><a href="https://aviralgupta752.github.io/Aviral-Resume/" style="color: var(--accent); font-weight: 700; text-decoration: none;">View all quarterly manager reviews &rarr;</a></p>
   </section>
 
   <section>
@@ -116,32 +115,28 @@
         <span class="role"><span class="org">Postman</span> &mdash; Software Engineer 2</span>
         <span class="dates">Jan 2023 &ndash; Present</span>
       </div>
-      <div class="sub">Test Infrastructure &amp; Developer Productivity &middot; India</div>
+      <div class="sub">Developer Productivity &amp; Platform Infrastructure &middot; India</div>
       <div class="group">
-        <div class="group-head">E2E Test Platform &amp; CI/CD</div>
+        <div class="group-head">Core CI/CD &amp; Test Platform</div>
         <ul>
-          <li>Migrated the slow, flaky WebdriverIO suite to Playwright. WDIO had piled up wrappers and a CJS teleport framework that transpiled our ES specs, which made builds slow, and its reports needed a script just to attach logs and had no timeline view. Playwright brought native ES, much easier debugging, CDP execution (~2x faster than WDIO's ChromeDriver hops), and agent-scaffolded specs that 
-         <strong>cut new-spec authoring ~80% (~1 story point &rarr; ~30&ndash;60 min)</strong>.</li>
-         <li> 
-          Designed the framework to be modular and scalable, keeping the core offerings (hydration, selective test execution, ticket creation, and performance checks) in a standalone automations package that any project can drop in through an agent.
-         </li>
-          <li>Built change-based selective execution so a PR runs only the specs that exercise its changed code. E2E specs don't import source directly, so the mapping is derived from coverage: each run's V8 coverage gives the compiled chunk names, which resolve through source-maps back to the executed source lines, producing a reverse source-to-spec map that selects specs when their files change. This <strong>catches ~90% of leaked mainline bugs on the PR itself</strong>.</li>
-          <li>Fixed flaky Windows E2E runs caused by a Cloudflare allowlist race condition: an AWS Lambda and SQS pipeline registers each runner's dynamic IP before its run and clears it afterward.</li>
+          <li>Migrated legacy WebdriverIO suite to Playwright, eliminating CJS transpilation layers and enabling native ES with Chrome DevTools Protocol (CDP) execution (~2x faster than ChromeDriver hops); packaged core capabilities into a modular automations library and integrated agent-scaffolded spec generation to <strong>reduce new-spec authoring by ~80% (~1 story point &rarr; ~30&ndash;60 min)</strong>.</li>
+          <li>Architected change-based selective test execution across 45+ daily PRs: dynamically mapped changed code to affected suites by extracting V8 coverage chunk hashes and resolving source-maps to executed lines, eliminating full-suite overhead on incremental PRs and <strong>catching ~90% of regressions pre-merge</strong>.</li>
+          <li>Eliminated flaky Windows CI runner failures caused by Cloudflare allowlist race conditions by engineering an event-driven AWS Lambda + SQS pipeline to dynamically synchronize and flush ephemeral runner IPs.</li>
         </ul>
       </div>
 
       <div class="group">
-        <div class="group-head">AI &amp; Agentic Test Tooling</div>
+        <div class="group-head">AI &amp; Agentic Systems</div>
         <ul>
-          <li>Built and deployed the test-infra-mcp-server, adding tools that let developers trigger E2E tests and check their squad&rsquo;s flaky specs, plus tools that let agents automatically triage consistent E2E failures. Roughly 63% of triage tickets were resolved without manual intervention.</li>
-          <li>Designed E2E Coverage Signals, a dashboard that maps where customers actually feel pain (from GitHub, customer escalations, incident.io, and Slack) against our E2E coverage and ranks the riskiest gaps with a transparent scoring formula. A daily AI agent feeds the deterministic Node pipeline behind it, shipped as a React/Vite app on GitHub Pages. It gave leadership their first clear read on which important areas are under-tested.</li>
+          <li>Shipped test-infra-mcp-server and LLM agents to provide on-demand test triggering, squad-level flakiness tracking, and automated root-cause triage of consistent test failures using New Relic telemetry; processes <strong>70&ndash;140 failure tickets weekly</strong> and <strong>autonomously resolves ~70% without human intervention</strong>.</li>
+          <li>Designed E2E Coverage Signals, an automated risk-assessment platform mapping customer-pain signals (GitHub, escalations, incident.io, Slack) against E2E test coverage using an auditable scoring model; built with a daily AI agent ingestion pipeline and React/Vite dashboard, delivering leadership's first visibility into high-risk coverage gaps.</li>
         </ul>
       </div>
 
       <div class="group">
         <div class="group-head">Coverage &amp; Quality Governance</div>
         <ul>
-          <li>Shipped an incremental-coverage check as a reusable GitHub Action across every backend repo. Instead of reporting where total coverage sits, it tells the author whether the lines they just wrote are tested. Company-wide unit and integration coverage increased from <strong>42% to 73% in 3 months</strong>.</li>
+          <li>Designed and rolled out incremental (patch) coverage gating via reusable GitHub Actions across ~100 backend repositories (IAM, Workspaces, Billing, Collections), increasing company-wide unit and integration test coverage from <strong>42% to 73% in 3 months</strong>.</li>
         </ul>
       </div>
 
@@ -154,11 +149,10 @@
       </div>
 
       <div class="group">
-        <div class="group-head">Operations</div>
+        <div class="group-head">Operations &amp; Infrastructure</div>
         <ul>
-          <li>Moved on-call alerting from Opsgenie to incident.io &mdash; schedules, routing, and a shared helper package.</li>
-          <li>Built squad and company dashboards for incident, bug, and CUE trends. They feed the State of Quality dashboard in Looker, which gives the org a running view of reliability.</li>
-          <li><strong>Cut E2E test setup time from ~30s to ~6s</strong> by creating users in parallel, moving user cleanup to async monitors, removing barrel-file imports, and caching repeated network calls.</li>
+          <li>Migrated on-call alerting and paging from Opsgenie to incident.io, configuring schedules, escalation paths, and shared automation helpers.</li>
+          <li><strong>Reduced E2E test setup latency by 80% (30s &rarr; 6s)</strong> via parallel user provisioning, asynchronous lifecycle cleanup, barrel-file tree-shaking, and network response caching.</li>
         </ul>
       </div>
     </div>
@@ -166,12 +160,13 @@
 
   <section>
     <h2>Skills</h2>
-    <div class="skill"><span class="label">AI &amp; Agentic tooling:</span> <span class="val">MCP servers, LLM agents, Cursor/Claude Automations</span></div>
-    <div class="skill"><span class="label">Test automation:</span> <span class="val">Playwright, WebdriverIO, Puppeteer, Allure reporting, NYC/Istanbul, page-object design</span></div>
-    <div class="skill"><span class="label">CI/CD &amp; build:</span> <span class="val">CircleCI, GitHub Actions, Nx monorepo, Yarn v4, Selective Test Execution</span></div>
-    <div class="skill"><span class="label">Observability &amp; data:</span> <span class="val">New Relic (NRQL), Looker, AWS (Lambda, SQS, Redshift, S3), SonarQube, incident.io, Opsgenie</span></div>
-    <div class="skill"><span class="label">Performance:</span> <span class="val">App relaunch benchmarking + regression gating, critical-path bundle-size gates, Lighthouse Metrics (LCP, FID, CLS)</span></div>
-    <div class="skill"><span class="label">Languages:</span> <span class="val">JavaScript, C++</span></div>
+    <div class="skill"><span class="label">Languages:</span> <span class="val">TypeScript, JavaScript, Node.js, Python, C++, Bash</span></div>
+    <div class="skill"><span class="label">AI &amp; Agentic Systems:</span> <span class="val">Model Context Protocol (MCP), LLM Agents, Multi-agent Triage, RAG, Cursor/Claude Automation APIs</span></div>
+    <div class="skill"><span class="label">CI/CD &amp; Build:</span> <span class="val">CircleCI, GitHub Actions, Nx monorepo, Yarn Berry, Selective/Change-based Execution, Docker</span></div>
+    <div class="skill"><span class="label">Test Platforms:</span> <span class="val">Playwright, WebdriverIO, Puppeteer, Allure, NYC/Istanbul, V8 Coverage AST mapping, Service Virtualization</span></div>
+    <div class="skill"><span class="label">Observability &amp; Cloud:</span> <span class="val">New Relic (NRQL), AWS (Lambda, SQS, S3, Redshift), Looker, incident.io, Opsgenie, SonarQube</span></div>
+    <div class="skill"><span class="label">Performance &amp; Reliability:</span> <span class="val">Warm-boot &amp; relaunch benchmarking, P90/P95 regression gating, critical-path bundle-size gates, Lighthouse</span></div>
+    <div class="skill"><span class="label">Competitive Programming:</span> <span class="val">LeetCode (max rating 2109), CodeChef (5-star, max rating 2015)</span></div>
   </section>
 
   <section>

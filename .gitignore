@@ -1,4 +1,15 @@
-# Transient preview image (regenerate with `make preview`)
+# Generated build outputs
+generated/
+
+# LaTeX intermediates (if run outside generated/)
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Transient preview image
 aviral-gupta-resume-preview.png
 
 # macOS

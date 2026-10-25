@@ -1,0 +1,50 @@
+name: Build and Publish Resume PDF
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tectonic LaTeX engine
+        uses: tectonic-typesetting/setup-tectonic@v1
+
+      - name: Build PDF from LaTeX
+        run: |
+          mkdir -p generated
+          tectonic -o generated aviral-gupta-resume.tex
+
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aviral-gupta-resume
+          path: generated/aviral-gupta-resume.pdf
+          if-no-files-found: error
+
+      - name: Publish to GitHub Release (on push to main)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: "Latest Resume"
+          body: "Automated build of Aviral Gupta's resume PDF from latest push to `main`."
+          files: generated/aviral-gupta-resume.pdf
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

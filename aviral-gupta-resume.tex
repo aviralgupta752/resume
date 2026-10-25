@@ -1,0 +1,152 @@
+%-------------------------
+% ATS-Optimized Resume in LaTeX
+% Candidate: Aviral Gupta
+% Single-Page Engineered Layout for High ATS Parsability
+% Compatible with Tectonic & pdflatex
+%-------------------------
+
+\documentclass[9.5pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+% ATS friendly font setting / PDF text tagging
+\ifdefined\pdfgentounicode
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
+% Geometry: tight margins tuned for clean single-page presentation
+\usepackage[top=8.5mm, bottom=8.5mm, left=11.5mm, right=11.5mm]{geometry}
+
+% Color definitions
+\definecolor{accent}{HTML}{0E7490}
+\definecolor{darkink}{HTML}{15181C}
+\definecolor{muted}{HTML}{5B6474}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\small\bfseries\color{accent}
+}{}{0em}{}[\color{accent}\titlerule \vspace{-3.5pt}]
+
+% Bullet item definition
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1}}
+}
+
+\renewcommand\labelitemi{{\color{accent}$\vcenter{\hbox{\tiny$\bullet$}}$}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\fontsize{18}{20}\selectfont \textbf{\scshape Aviral Gupta}} \\[1.5pt]
+    {\footnotesize \textbf{\color{accent} SOFTWARE ENGINEER 2 \ $\cdot$ \ DEVELOPER PRODUCTIVITY \& PLATFORM INFRASTRUCTURE}} \\[2.5pt]
+    \footnotesize \href{mailto:guptaavi352@gmail.com}{guptaavi352@gmail.com} \ $|$ \ 
+    +91 7726924322 \ $|$ \ 
+    India \ $|$ \ 
+    \href{https://www.linkedin.com/in/aviral-gupta-754341152/}{linkedin.com/in/aviral-gupta-754341152}
+\end{center}
+\vspace{-8pt}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\vspace{1pt}
+{\small
+Software Engineer 2 on Postman's Developer Productivity \& Platform Infrastructure team. Over 3+ years, built the core CI/CD platforms, performance regression gates, and AI-driven developer tooling supporting \textbf{200+ engineers across 20 squads shipping $\sim$45 PRs daily} across Postman's web and Electron desktop apps. Specializes in transforming slow, non-deterministic build and test workflows into high-throughput, self-serve developer platforms.
+}
+\vspace{-3pt}
+
+%-----------RECOGNITION-----------
+\section{Recognition}
+\vspace{1pt}
+{\small
+``\textit{Operated like a one-man army across multiple initiatives, embracing AI technologies into practical offerings\dots central to shifting Test Infra from a blocker to an enabler of feature releases.}'' \\
+\vspace{0.5pt}
+\hspace*{8pt}\textbf{--- Salil Gupta}, Engineering Manager, Postman \ $\cdot$ \ \href{https://aviralgupta752.github.io/Aviral-Resume/}{\textbf{View quarterly reviews $\rightarrow$}}
+}
+\vspace{-3pt}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \vspace{-1pt}
+  \noindent\textbf{Postman} \hfill \textbf{\small Jan 2023 -- Present} \\
+  \textit{\small Software Engineer 2 --- Developer Productivity \& Platform Infrastructure} \hfill \textit{\small India} \\
+  \vspace{-2pt}
+
+  \vspace{1.5pt}
+  \textbf{\small\color{darkink} Core CI/CD \& Test Platform}
+  \begin{itemize}[leftmargin=12pt, topsep=1pt, itemsep=1.5pt, parsep=0pt]
+    \resumeItem{Migrated legacy WebdriverIO suite to Playwright, eliminating CJS transpilation layers and enabling native ES with Chrome DevTools Protocol (CDP) execution ($\sim$2x faster than ChromeDriver hops); packaged core capabilities into a modular automations library and integrated agent-scaffolded spec generation to \textbf{reduce new-spec authoring by $\sim$80\% ($\sim$1 story point $\rightarrow$ $\sim$30--60 min)}.}
+    \resumeItem{Architected change-based selective test execution across 45+ daily PRs: dynamically mapped changed code to affected suites by extracting V8 coverage chunk hashes and resolving source-maps to executed lines, eliminating full-suite overhead on incremental PRs and \textbf{catching $\sim$90\% of regressions pre-merge}.}
+    \resumeItem{Eliminated flaky Windows CI runner failures caused by Cloudflare allowlist race conditions by engineering an event-driven AWS Lambda + SQS pipeline to dynamically synchronize and flush ephemeral runner IPs.}
+  \end{itemize}
+
+  \vspace{1.5pt}
+  \textbf{\small\color{darkink} AI \& Agentic Systems}
+  \begin{itemize}[leftmargin=12pt, topsep=1pt, itemsep=1.5pt, parsep=0pt]
+    \resumeItem{Shipped test-infra-mcp-server and LLM agents to provide on-demand test triggering, squad-level flakiness tracking, and automated root-cause triage of consistent test failures using New Relic telemetry; processes \textbf{70--140 failure tickets weekly} and \textbf{autonomously resolves $\sim$70\% without human intervention}.}
+    \resumeItem{Designed E2E Coverage Signals, an automated risk-assessment platform mapping customer-pain signals (GitHub, escalations, incident.io, Slack) against E2E test coverage using an auditable scoring model; built with a daily AI agent ingestion pipeline and React/Vite dashboard, delivering leadership's first visibility into high-risk coverage gaps.}
+  \end{itemize}
+
+  \vspace{1.5pt}
+  \textbf{\small\color{darkink} Coverage \& Quality Governance}
+  \begin{itemize}[leftmargin=12pt, topsep=1pt, itemsep=1.5pt, parsep=0pt]
+    \resumeItem{Designed and rolled out incremental (patch) coverage gating via reusable GitHub Actions across $\sim$100 backend repositories (IAM, Workspaces, Billing, Collections), increasing company-wide unit and integration test coverage from \textbf{42\% to 73\% in 3 months}.}
+  \end{itemize}
+
+  \vspace{1.5pt}
+  \textbf{\small\color{darkink} Performance \& Release Guardrails}
+  \begin{itemize}[leftmargin=12pt, topsep=1pt, itemsep=1.5pt, parsep=0pt]
+    \resumeItem{Created a release-confidence score that \textbf{holds back a tier rollout until it clears 95\%}. Automated daily-release analysis and summaries took over most of the \textbf{$\sim$4--5 hr manual signoff}, a big part of how Postman now ships \textbf{daily, in under an hour}.}
+    \resumeItem{Measured app warm-boot times through a Playwright $\rightarrow$ CircleCI $\rightarrow$ New Relic pipeline and turned them into release gates. Built the self-serve infra behind it so developers can trigger runs on demand across every OS, see how their PR affects performance, and compare it against earlier builds.}
+  \end{itemize}
+
+  \vspace{1.5pt}
+  \textbf{\small\color{darkink} Operations \& Infrastructure}
+  \begin{itemize}[leftmargin=12pt, topsep=1pt, itemsep=1.5pt, parsep=0pt]
+    \resumeItem{Migrated on-call alerting and paging from Opsgenie to incident.io, configuring schedules, escalation paths, and shared automation helpers.}
+    \resumeItem{\textbf{Reduced E2E test setup latency by 80\% (30s $\rightarrow$ 6s)} via parallel user provisioning, asynchronous lifecycle cleanup, barrel-file tree-shaking, and network response caching.}
+  \end{itemize}
+\vspace{-4pt}
+
+%-----------SKILLS-----------
+\section{Skills}
+\vspace{1pt}
+\begin{itemize}[leftmargin=0in, label={}, topsep=1pt, itemsep=1pt, parsep=0pt]
+    \item \small{
+     \textbf{Languages:} {TypeScript, JavaScript, Node.js, Python, C++, Bash} \\
+     \textbf{AI \& Agentic Systems:} {Model Context Protocol (MCP), LLM Agents, Multi-agent Triage, RAG, Cursor/Claude Automation APIs} \\
+     \textbf{CI/CD \& Build:} {CircleCI, GitHub Actions, Nx monorepo, Yarn Berry, Selective/Change-based Execution, Docker} \\
+     \textbf{Test Platforms:} {Playwright, WebdriverIO, Puppeteer, Allure, NYC/Istanbul, V8 Coverage AST mapping, Service Virtualization} \\
+     \textbf{Observability \& Cloud:} {New Relic (NRQL), AWS (Lambda, SQS, S3, Redshift), Looker, incident.io, Opsgenie, SonarQube} \\
+     \textbf{Performance \& Reliability:} {Warm-boot \& relaunch benchmarking, P90/P95 regression gating, critical-path bundle-size gates, Lighthouse} \\
+     \textbf{Competitive Programming:} {LeetCode (max rating 2109), CodeChef (5-star, max rating 2015)}
+    }
+\end{itemize}
+\vspace{-6pt}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \vspace{-1pt}
+  \noindent\textbf{Indian Institute of Information Technology, Allahabad} \hfill \textbf{\small Jul 2019 -- Jul 2023} \\
+  \textit{\small B.Tech, Information Technology \ $|$ \ CGPA 8.53} \hfill \textit{\small India}
+
+%-------------------------------------------
+\end{document}

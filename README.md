@@ -1,43 +1,48 @@
 # Aviral Gupta — Resume
 
-Single-source resume. Edit one HTML file, then regenerate the PDF and Word copies with one command.
+ATS-optimized resume repository with automated LaTeX compilation, ATS validation, and CI/CD pipeline.
 
-## Commands
+## Automated Builds & Outputs
 
-| Command | What it does |
-|---|---|
-| `make` / `make all` | Build the PDF **and** the DOCX |
-| `make pdf` | Build the styled, print-ready PDF |
-| `make docx` | Build the ATS / Word DOCX |
-| `make open` | Open the HTML source in your browser |
-| `make preview` | Render a PNG preview |
-| `make clean` | Remove generated files |
-| `make help` | List commands |
+- Source LaTeX: [aviral-gupta-resume.tex](aviral-gupta-resume.tex) (single-column, standard semantic headings, ATS-friendly typography)
+- Generated PDF: `generated/aviral-gupta-resume.pdf` (1 page, 100% extractable unicode text)
+- Alternative HTML: [aviral-gupta-resume.html](aviral-gupta-resume.html) (print-ready web version)
+- Plaintext Mirror: [aviral-gupta-resume.md](aviral-gupta-resume.md)
 
-## Files
+## Quick Start
 
-- `aviral-gupta-resume.html` — **the source; edit this one**
-- `aviral-gupta-resume.md` — plain-text mirror (not used by the build)
-- `aviral-gupta-resume.pdf` — styled output (generated)
-- `aviral-gupta-resume.docx` — Word / ATS output (generated)
-- `Makefile` — the build commands
-
-## Requirements
-
-- **Google Chrome** — used headless to render the PDF and preview
-- **macOS `textutil`** — built in; used for the DOCX
-
-## Where to edit (in `aviral-gupta-resume.html`)
-
-- **Contact line** — the `.contact` block (email, phone, city, LinkedIn)
-- **Title** — the `.title-line` and the Postman role
-- **Summary / Recognition** — the first two sections
-- **Experience bullets** — the `<li>` items (add, edit, or trim here)
-- **Skills / Education** — the last two sections
-
-After editing, run `make` and commit:
-
+### Build Locally
 ```bash
 make
-git add -A && git commit -m "Update resume"
 ```
+This compiles `aviral-gupta-resume.tex` into `generated/aviral-gupta-resume.pdf` using [Tectonic](https://tectonic-typesetting.github.io/) (or `pdflatex`).
+
+### Validate ATS Parsing
+```bash
+node scripts/ats-validate.js generated/aviral-gupta-resume.pdf
+```
+Extracts the text layer via macOS PDFKit and verifies:
+- Exactly 1 page
+- Standard section headers (`Summary`, `Experience`, `Skills`, `Education`)
+- Contact information and keyword discoverability
+
+### Available Make Targets
+
+| Command | Description |
+|---|---|
+| `make` / `make all` | Build LaTeX PDF to `generated/` |
+| `make pdf` | Compile LaTeX resume to `generated/aviral-gupta-resume.pdf` |
+| `make validate` | Compile PDF and run ATS validation + 1-page check |
+| `make html-pdf` | Optional: compile HTML resume using headless Chrome |
+| `make open` | Open the generated PDF in the default PDF viewer |
+| `make clean` | Remove `generated/` build directory |
+| `make help` | Show available targets |
+
+## Automated CI/CD Pipeline
+
+The GitHub Actions workflow in [.github/workflows/publish.yml](.github/workflows/publish.yml):
+1. Runs on every push and PR to `main`.
+2. Sets up `tectonic`.
+3. Compiles `aviral-gupta-resume.tex` into a PDF.
+4. Uploads the build artifact.
+5. On merges to `main`, publishes the PDF automatically as the `latest` GitHub release.
