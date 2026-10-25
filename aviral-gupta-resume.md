@@ -33,7 +33,7 @@ Developer Productivity & Platform Infrastructure | India | Jan 2023 - Present
 - **Release Confidence & Automated Signoff:** Created a release-confidence score that holds back a tier rollout until it clears 95%. Automated daily-release analysis and summaries took over most of the ~4-5 hr manual signoff, a big part of how Postman now ships daily, in under an hour.
 - **App Warm-Boot Performance Gates:** Measured app warm-boot times through a Playwright -> CircleCI -> New Relic pipeline and turned them into release gates. Built the self-serve infra behind it so developers can trigger runs on demand across every OS, see how their PR affects performance, and compare it against earlier builds.
 - **Windows CI Cloudflare IP Synchronization:** Eliminated flaky Windows CI runner failures caused by Cloudflare allowlist race conditions by engineering an event-driven AWS Lambda + SQS pipeline to dynamically synchronize and flush ephemeral runner IPs.
-- **Operations & Infrastructure Reliability:** Migrated mission-critical on-call alerting and paging from Opsgenie to incident.io (schedules, routing, shared automation helpers); reduced E2E test setup latency by 80% (30s -> 6s) via parallel user provisioning, asynchronous lifecycle cleanup, barrel-file tree-shaking, and network response caching.
+- **Operations & Infrastructure Reliability:** Migrated mission-critical on-call alerting and paging from Opsgenie to incident.io (schedules, routing, shared automation helpers); reduced E2E test setup latency by 80% (30s -> 6s) via parallel user provisioning, asynchronous lifecycle cleanup, and network response caching.
 
 ### AccioJob - Data Structures & Algorithms Mentor
 Apr 2022 - Dec 2023
@@ -45,10 +45,10 @@ Apr 2022 - Dec 2023
 - **Languages:** TypeScript, JavaScript, Node.js, Python, C++, Bash
 - **AI & Agentic Systems:** Model Context Protocol (MCP), LLM Agents, Multi-agent Triage, RAG, Cursor/Claude Automation APIs
 - **CI/CD & Build:** CircleCI, GitHub Actions, Nx monorepo, Yarn Berry, Selective/Change-based Execution, Docker
-- **Test Platforms:** Playwright, WebdriverIO, Puppeteer, Allure, NYC/Istanbul, V8 Coverage AST mapping, Service Virtualization
+- **Test Platforms:** Playwright, WebdriverIO, Puppeteer, Allure, NYC/Istanbul, V8 Coverage AST mapping
 - **Observability & Cloud:** New Relic (NRQL), AWS (Lambda, SQS, S3, Redshift), Looker, incident.io, Opsgenie, SonarQube
-- **Performance & Reliability:** Warm-boot & relaunch benchmarking, P90/P95 regression gating, critical-path bundle-size gates, Lighthouse
-- **Competitive Programming:** LeetCode (max rating 2109), CodeChef (5-star, max rating 2015)
+- **Performance & Reliability:** Warm-boot & relaunch benchmarking, P-min regression gating, critical-path bundle-size gates
+- **Competitive Programming:** [LeetCode (max rating 2109)](https://leetcode.com/u/aviralgupta752/)
 
 ## Education
 
