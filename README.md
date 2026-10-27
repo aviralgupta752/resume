@@ -1,12 +1,18 @@
 # Aviral Gupta — Resume
 
-ATS-optimized resume repository with automated LaTeX compilation, ATS validation, and CI/CD pipeline.
+ATS-optimized resume repository with automated LaTeX compilation, ATS validation, and live GitHub Pages web deployment.
+
+## Live Deployment
+
+- **Live Web Resume:** [https://aviralgupta752.github.io/resume/](https://aviralgupta752.github.io/resume/) (instantly viewable in any browser without downloading)
+- **Direct PDF Link:** [https://aviralgupta752.github.io/resume/aviral-gupta-resume.pdf](https://aviralgupta752.github.io/resume/aviral-gupta-resume.pdf)
+- **Latest GitHub Release:** [https://github.com/aviralgupta752/resume/releases/tag/latest](https://github.com/aviralgupta752/resume/releases/tag/latest)
 
 ## Automated Builds & Outputs
 
 - Source LaTeX: [aviral-gupta-resume.tex](aviral-gupta-resume.tex) (single-column, standard semantic headings, ATS-friendly typography)
 - Generated PDF: `generated/aviral-gupta-resume.pdf` (1 page, 100% extractable unicode text)
-- Alternative HTML: [aviral-gupta-resume.html](aviral-gupta-resume.html) (print-ready web version)
+- Web/HTML Source: [aviral-gupta-resume.html](aviral-gupta-resume.html) (deployed to GitHub Pages)
 - Plaintext Mirror: [aviral-gupta-resume.md](aviral-gupta-resume.md)
 
 ## Quick Start
